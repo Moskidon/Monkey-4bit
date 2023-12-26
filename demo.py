@@ -76,6 +76,10 @@ def _load_model_tokenizer(args):
         args.checkpoint_path,
         device_map=device_map,
         trust_remote_code=True,
+        torch_dtype=torch.float16,
+        low_cpu_mem_usage=True,
+        load_in_4bit=True,
+        bnb_4bit_compute_dtype=torch.float16
     ).eval()
     # model.generation_config = GenerationConfig.from_pretrained(
     #     args.checkpoint_path, trust_remote_code=True, resume_download=True,
